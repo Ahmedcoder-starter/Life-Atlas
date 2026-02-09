@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Atlas | Planner</title>
+  <style>
+    body { margin:0; font-family:Poppins, Arial, sans-serif; background:#f7f7f5; }
+    header { padding:24px 48px; display:flex; justify-content:space-between; }
+    .logo { font-size:24px; font-weight:700; color:#ff5a3c; }
+    nav a { margin-left:24px; text-decoration:none; color:#444; }
+    .card { background:#fff; max-width:900px; margin:48px auto; padding:32px; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.06); }
+    table { width:100%; border-collapse:collapse; }
+    th, td { border:1px solid #ddd; padding:12px; text-align:center; }
+    th { background:#fafaf7; }
+    td { cursor:text; }
+    .hint { margin-bottom:16px; color:#555; }
+    .green-row {
+    background-color: green;
+  }
+   .green-roww {
+    background-color: green;
+  }
+    
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">Life Atlas</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="homework.html">Homework</a>
+    <a href="goals.html">Goals</a>
+    <a href="planner.html">Planner</a>
+  </nav>
+</header>
+
+<div class="card">
+  <h2>Life Atlas Planner</h2>
+  <div class="hint">Click any cell to edit. Your timetable saves automatically.</div>
+
+  <table id="planner">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th>8 – 8:15</th><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+      <tr><th>8:20 – 9:15</th><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+      <tr><th>9:20 – 10:15</th><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+      <tr class="green-row">
+  <th>10:15 – 10:35</th>
+  <td contenteditable></td>
+  <td contenteditable></td>
+  <td contenteditable></td>
+  <td contenteditable></td>
+  <td contenteditable></td>
+</tr>
+      <tr><th>10:40 – 11:35</th><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+     <tr><th>11:40 – 12:35</th><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+     <tr class="green-roww">
+  <th>12:35 – 1:15</th>
+  <td contenteditable></td>
+  <td contenteditable></td>
+  <td contenteditable></td>
+  <td contenteditable></td>
+  <td contenteditable></td>
+</tr>
+      <tr><th>1:20 – 2:15</th><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+      <tr><th>2:15 – 3:15</th><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  const table = document.getElementById('planner');
+
+  // Load saved planner
+  const saved = localStorage.getItem('plannerData');
+  if (saved) table.innerHTML = saved;
+
+  // Save on edit
+  table.addEventListener('input', () => {
+    localStorage.setItem('plannerData', table.innerHTML);
+  });
+</script>
+</body>
+</html>

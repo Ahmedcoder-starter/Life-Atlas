@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Atlas | Goals</title>
+  <style>
+    body { margin:0; font-family:Poppins, Arial, sans-serif; background:#f7f7f5; }
+    header { padding:24px 48px; display:flex; justify-content:space-between; }
+    .logo { font-size:24px; font-weight:700; color:#ff5a3c; }
+    nav a { margin-left:24px; text-decoration:none; color:#444; }
+    .card {
+      background:#fff;
+      max-width:600px;
+      margin:48px auto;
+      padding:32px;
+      border-radius:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.06);
+    }
+    input, button { padding:10px; font-size:14px; }
+    ul { padding-left:20px; }
+    li { margin-bottom:8px; }
+    .done { color:red; cursor:pointer; margin-left:10px; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">Life Atlas</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="homework.html">Homework</a>
+    <a href="goals.html">Goals</a>
+    <a href="planner.html">Planner</a>
+  </nav>
+</header>
+
+<div class="card">
+  <h2>Your Goals</h2>
+  <input id="goalInput" placeholder="Add a goal..." />
+  <button onclick="addGoal()">Add</button>
+  <ul id="goalList"></ul>
+</div>
+
+<script>
+  const goals = JSON.parse(localStorage.getItem('goals') || '[]');
+
+  function render() {
+    const ul = document.getElementById('goalList');
+    ul.innerHTML = '';
+    goals.forEach((g, i) => {
+      const li = document.createElement('li');
+      li.innerHTML = `${g} <span class="done" onclick="removeGoal(${i})">✓</span>`;
+      ul.appendChild(li);
+    });
+    localStorage.setItem('goals', JSON.stringify(goals));
+  }
+
+  function addGoal() {
+    const input = document.getElementById('goalInput');
+    if (input.value.trim()) {
+      goals.push(input.value.trim());
+      input.value = '';
+      render();
+    }
+  }
+
+  function removeGoal(i) {
+    goals.splice(i, 1);
+    render();
+  }
+
+  render();
+</script>
+</body>
+</html>
